@@ -1,0 +1,18 @@
+{
+  "name": "cobeca-backups-app",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "app para la verificación automática de los backups de cada farmacia/cliente relacionado a COBECA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "sequelize": "^6.37.5",
+    "tedious": "^18.6.1"
+  }
+}
