@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Deferrable } from "sequelize";
 import sequelize from "../connection/connection.js";
 
 const User = sequelize.define('User', {
@@ -19,7 +19,7 @@ const User = sequelize.define('User', {
         allowNull: false
     },
     user_email: {
-        type: DataTypes.ma,
+        type: DataTypes.STRING,
         allowNull: false
     },
     user_phoneNumber: {
@@ -27,3 +27,5 @@ const User = sequelize.define('User', {
         allowNull: false
     },
 })
+
+export default User
