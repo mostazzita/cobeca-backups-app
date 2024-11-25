@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize'
+import User from './models/User.js'
 import e from 'express'
 import cookieSession from 'cookie-session'
 import bodyParser from 'body-parser'
@@ -34,8 +35,35 @@ app.get('/login', (req, res) => {
     res.send('login')
 })
 
-app.post('/login', (req, res) => {
-    
+app.post('/login', async (req, res) => {
+
+    if (Object.keys(req.body).length > 0) {
+
+        const loginData = {
+            userEmail: req.body.userEmail,
+            userPassword: req.body.userPassword
+        }
+
+        const user = await User.findOne({ where: { user_email: loginData.userEmail, user_password: loginData.userPassword }})
+
+        if (user != null) {
+
+            req.session.dataFromLogin = {
+                msg: "hola"
+            }
+
+            res.redirect('/profile')
+        } else {
+            console.log(`the credentials match with a registered user (${user.user_email})`)
+            res.send('the credentials match with a registered user')
+        }
+
+        res.send(`you received something`)
+    } else {
+        console.log(`you did'nt received anything`)
+        res.send(`you did'nt received anything`)
+    }
+
 })
 
 app.get('/profile', (req, res, next) => {
@@ -51,12 +79,17 @@ app.get('/profile', (req, res, next) => {
     
         }
 
+        const greetings = {
+            msg: req.session.dataFromLogin.msg
+        }
+
         const html = `
         <body>
             <h1>${userData.userFirstname} ${userData.userLastname}</h1>
             <h2>${userData.userEmail}<h2>
             <h2>${userData.userPhone}<h2>
-            <h2>${userData.userCI}<h2>    
+            <h2>${userData.userCI}<h2>
+            <h3>${greetings.msg}</h3>    
         </body>
         `
 
