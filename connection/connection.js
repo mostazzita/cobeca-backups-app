@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize('backups_db', 'angelCobeca', 'Cobeca2024**', {
+const sequelize = new Sequelize('cobeca_backups_db', 'angelCobeca', 'Cobeca2024**', {
     host: 'localhost',
     dialect: 'mssql'
 })
