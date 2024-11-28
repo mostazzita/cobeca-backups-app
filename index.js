@@ -100,6 +100,17 @@ app.get('/profile', (req, res, next) => {
     }
 })
 
+app.get('/test', (req, res) => {
+    const testData = {
+        firstName: 'Angel',
+        lastName: 'Nieto',
+        age: 21,
+        email: 'angel@gmail.com'
+    }
+
+    res.send(testData)
+})
+
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 })
