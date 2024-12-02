@@ -3,7 +3,7 @@ import User from './models/User.js'
 import e from 'express'
 import cookieSession from 'cookie-session'
 import bodyParser from 'body-parser'
-
+import cors from 'cors'
 import userRouter from './routes/adm/AdmUserRoutes.js'
 import backupRouter from './routes/adm/AdmBackupRoutes.js'
 
@@ -11,6 +11,7 @@ const app = e()
 const router = e.Router()
 const PORT = 3000
 
+app.use(cors())
 app.use(bodyParser.json())
 app.use(cookieSession({
     name: "session",
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
+
     res.send('login')
 })
 
